@@ -10,7 +10,7 @@ export default function ComponentVideoBG({ video }) {
         objectFit: "cover",
       }}>
         <source src={STRAPI_HOST + video.url} data-src={STRAPI_HOST + video.url} type="video/mp4" />
-        Your browser doesn't support HTML5 video
+        Your browser doesn&lsquo;t support HTML5 video
       </video> : null}
       <div className="absolute w-full h-full inset-0" style={{
         backgroundColor: "rgba(0,0,0,0.75)"
