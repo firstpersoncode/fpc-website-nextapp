@@ -1,3 +1,9 @@
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/effect-cube"
+import "swiper/css/pagination"
+import "swiper/css/navigation"
+
 import '../styles/globals.css'
 
 function MyApp({ Component, pageProps }) {

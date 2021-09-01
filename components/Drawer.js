@@ -1,4 +1,4 @@
-export default function Drawer({ open, onClose, children }) {
+export default function ComponentDrawer({ open, onClose, children }) {
   return (
     <>
       {open ? <div onClick={onClose} className="fixed z-50 inset-0 w-full h-full" style={{ backgroundColor: "rgba(0,0,0,0.5)" }} /> : null}

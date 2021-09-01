@@ -1,14 +1,19 @@
 import { useState } from 'react'
 
+import ComponentVideoBG from "./VideoBG"
 import ComponentDrawer from './Drawer';
 
-export default function Project({ video, title, projects, isActive }) {
+export default function ComponentProject({ data, projects, isActive }) {
   const [open, setOpen] = useState(false)
-  const [selectedProject, setSelectedProject] = useState(-1)
+  const [selectedProject, setSelectedProject] = useState(null)
 
   function handleToggleProject(i) {
     return () => {
-      setSelectedProject(i)
+      const project = projects[i]
+      if (project) {
+        setSelectedProject(project)
+      }
+
       setOpen(v => !v)
     }
   }
@@ -17,51 +22,48 @@ export default function Project({ video, title, projects, isActive }) {
     setOpen(false)
   }
 
+  const STRAPI_HOST = process.env.NEXT_PUBLIC_STRAPI_URL
+  const { video } = data
+
   return (
     <>
-      <div className="h-full h-screen bg-black">
-        <div className="absolute w-full h-full inset-0 overflow-hidden">
-          <video autoPlay muted loop className="min-h-full min-w-full absolute" style={{
-            top: "50%",
-          	left: "50%",
-          	transform: "translate(-50%, -50%)",
-          	objectFit: "cover",
-          }} src={process.env.NEXT_PUBLIC_STRAPI_URL + video.url} type="video/mp4" />
-        </div>
-        <div className="absolute w-full h-full inset-0 flex flex-col justify-center items-center" style={{
-          backgroundColor: "rgba(0,0,0,0.75)"
-        }}>
-          <h1 className="text-3xl text-white font-medium mb-4">{title}</h1>
-          {projects && projects.length ? (
-            <ul className="text-blue-300 list-disc">
-              {projects.map((project, i) => (
-                <li onClick={handleToggleProject(i)} key={i} className="hover:text-white cursor-pointer"><a>{project.name}</a></li>
-              ))}
-            </ul>
-          ) : null}
-        </div>
+      <ComponentVideoBG video={video} />
+
+      <div className="absolute w-full h-full inset-0 flex flex-col justify-center items-center">
+        <h1 className="text-3xl text-white font-medium mb-4">My works</h1>
+        {projects && projects.length ? (
+          <ul className="text-blue-300 list-disc">
+            {projects.map((project, i) => (
+              <li onClick={handleToggleProject(i)} key={i} className="hover:text-white cursor-pointer">{project.name}</li>
+            ))}
+          </ul>
+        ) : null}
       </div>
-      <ComponentDrawer onClose={handleCloseProject} open={open && isActive}>
-        {selectedProject !== -1 ? (
+
+      {isActive ? <ComponentDrawer onClose={handleCloseProject} open={open}>
+        {selectedProject ? (
           <>
-            <h3 className="font-medium text-3xl">{projects[selectedProject].name}</h3>
-            <div className="flex items-center">
-              <img src={process.env.NEXT_PUBLIC_STRAPI_URL + projects[selectedProject].company.image.url} alt={projects[selectedProject].company.name} width={30} className="mr-2" />
-              <a href={projects[selectedProject].company.url} target="_blank" rel="noreferrer" className="font-medium text-blue-700">{projects[selectedProject].company.name}</a>
-            </div>
-            {projects[selectedProject].technologies.length ? (
+            {selectedProject.name ? <h3 className="font-medium text-3xl">{selectedProject.name}</h3> : null}
+            {selectedProject.company ? <div className="flex items-center">
+              {selectedProject.company.image ? <img src={STRAPI_HOST + selectedProject.company.image.url} width={30} className="mr-2" /> : null}
+              {selectedProject.company.url && selectedProject.name ? <a href={selectedProject.company.url} target="_blank" rel="noreferrer" className="font-medium text-blue-700">{selectedProject.company.name}</a> : null}
+            </div> : null}
+            {selectedProject.technologies && selectedProject.technologies.length ? (
               <ul className="flex items-center mb-4">
                 <li className="text-sm font-medium mr-4">Stacks:</li>
-              {projects[selectedProject].technologies.map((tech, i) => (
-                <li key={i} className="flex items-center mr-4"><img alt={tech.name} src={process.env.NEXT_PUBLIC_STRAPI_URL + tech.image.url} width={25} className="mr-2" /><span className="text-xs">{tech.name}</span></li>
+              {selectedProject.technologies.map((tech, i) => (
+                <li key={i} className="flex items-center mr-4">
+                  {tech.image && tech.image.url ? <img src={STRAPI_HOST + tech.image.url} width={25} className="mr-2" /> : null}
+                  {tech.name ? <span className="text-xs">{tech.name}</span> : null}
+                </li>
               ))}
               </ul>
             ) : null}
-            <p className="mb-4">{projects[selectedProject].body}</p>
-            <a href={projects[selectedProject].url} target="_blank" rel="noreferrer" className="text-blue-700">See project</a>
+            {selectedProject.body ? <p className="mb-4">{selectedProject.body}</p> : null}
+            {selectedProject.url ? <a href={selectedProject.url} target="_blank" rel="noreferrer" className="text-blue-700">See project</a> : null}
           </>
         ) : null}
-      </ComponentDrawer>
+      </ComponentDrawer> : null}
     </>
   )
 }
