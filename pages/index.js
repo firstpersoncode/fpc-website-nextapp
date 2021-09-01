@@ -26,7 +26,7 @@ function Home({ swipeProfile, swipeProject, swipeEnquiry, projects }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <div className="fixed inset-0 w-full h-full overflow-hidden bg-black">
+      <div className="fixed inset-0 w-full h-screen overflow-hidden bg-black">
         <Swiper onSlideChange={handleSetSwiped} effect={'cube'} grabCursor={false} pagination={{
           "type": "progressbar"
         }} navigation={{
