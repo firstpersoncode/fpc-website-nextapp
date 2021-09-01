@@ -15,7 +15,7 @@ export default function ComponentProfile({ data, swiped }) {
   }, []);
 
   useEffect(() => {
-    if (count > 2 && displaySwipe !== "opacity-75") {
+    if (count > 0 && displaySwipe !== "opacity-75") {
       setDsiplaySwipe("opacity-75")
     }
 

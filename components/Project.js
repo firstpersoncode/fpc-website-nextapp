@@ -43,14 +43,16 @@ export default function ComponentProject({ data, projects, isActive }) {
       {isActive ? <ComponentDrawer onClose={handleCloseProject} open={open}>
         {selectedProject ? (
           <>
-            {selectedProject.name ? <h3 className="font-medium text-3xl">{selectedProject.name}</h3> : null}
             {selectedProject.company ? <div className="flex items-center">
               {selectedProject.company.image ? <img src={STRAPI_HOST + selectedProject.company.image.url} width={30} className="mr-2" /> : null}
-              {selectedProject.company.url && selectedProject.name ? <a href={selectedProject.company.url} target="_blank" rel="noreferrer" className="font-medium text-blue-700">{selectedProject.company.name}</a> : null}
+              {selectedProject.company.url && selectedProject.name ? <a href={selectedProject.company.url} target="_blank" rel="noreferrer" className="font-medium text-blue-700 text-lg">{selectedProject.company.name}</a> : null}
             </div> : null}
+            {selectedProject.name ? <h3 className="font-medium text-3xl mb-8">{selectedProject.name}</h3> : null}
+
+            {selectedProject.body ? <p className="mb-4">{selectedProject.body}</p> : null}
+
             {selectedProject.technologies && selectedProject.technologies.length ? (
               <ul className="flex flex-wrap items-center mb-4">
-                <li className="text-sm font-medium mr-4">Stacks:</li>
               {selectedProject.technologies.map((tech, i) => (
                 <li key={i}>
                   <a href={tech.url} target="_blank" rel="noreferrer" className="flex items-center mr-4 text-blue-700">{tech.image && tech.image.url ? <img src={STRAPI_HOST + tech.image.url} width={25} className="mr-2" /> : null}
@@ -59,7 +61,7 @@ export default function ComponentProject({ data, projects, isActive }) {
               ))}
               </ul>
             ) : null}
-            {selectedProject.body ? <p className="mb-4">{selectedProject.body}</p> : null}
+
             {selectedProject.url ? <a href={selectedProject.url} target="_blank" rel="noreferrer" className="text-blue-700">See project</a> : null}
           </>
         ) : null}
