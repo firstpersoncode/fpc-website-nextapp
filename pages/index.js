@@ -39,8 +39,8 @@ function Home({ swipeProfile, swipeProject, swipeEnquiry, projects }) {
           <SwiperSlide><ComponentEnquiry data={swipeEnquiry} /></SwiperSlide>
         </Swiper>
 
-        <button className="text-white text-2xl fixed top-0 bottom-0 left-0 px-2 swiper-nav__prev z-10 bg-gradient-to-r hover:from-white hover:opacity-25">&#8678;</button>
-        <button className="text-white text-2xl fixed top-0 bottom-0 right-0 px-2 swiper-nav__next z-10 bg-gradient-to-l hover:from-white hover:opacity-25">&#8680;</button>
+        <button className="text-white text-2xl fixed top-0 bottom-0 left-0 px-2 swiper-nav__prev z-10 bg-gradient-to-r hover:from-white hover:opacity-10">&#8678;</button>
+        <button className="text-white text-2xl fixed top-0 bottom-0 right-0 px-2 swiper-nav__next z-10 bg-gradient-to-l hover:from-white hover:opacity-10">&#8680;</button>
       </div>
     </>
   )
