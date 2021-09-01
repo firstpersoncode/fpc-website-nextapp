@@ -5,7 +5,7 @@ export default function ComponentEnquiry({ data }) {
 
   return (
     <>
-      <ComponentVideoBG video={video} />
+      <ComponentVideoBG poster="/img/enquiry.png" video={video} />
 
       <div className="absolute w-full h-full inset-0 flex flex-col justify-center items-center">
         <a href="mailto:nasser.maronie@gmail.com" className="mb-4">

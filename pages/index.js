@@ -1,10 +1,9 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import Head from 'next/head'
 import { Swiper, SwiperSlide } from "swiper/react"
 import SwiperCore, {
   EffectCube,Pagination,Navigation
 } from 'swiper';
-import yall from 'yall-js'
 
 import ComponentProfile from '../components/Profile'
 import ComponentProject from '../components/Project'
@@ -19,11 +18,6 @@ function Home({ swipeProfile, swipeProject, swipeEnquiry, projects }) {
     setSwiped(true)
   }
 
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      document.addEventListener("DOMContentLoaded", yall);
-    }
-  }, [])
 
   return (
     <>

@@ -27,7 +27,7 @@ export default function ComponentProject({ data, projects, isActive }) {
 
   return (
     <>
-      <ComponentVideoBG video={video} />
+      <ComponentVideoBG poster="/img/projects.png" video={video} />
 
       <div className="absolute w-full h-full inset-0 flex flex-col justify-center items-center">
         <h1 className="text-3xl text-white font-medium mb-4">My works</h1>
