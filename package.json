@@ -13,7 +13,8 @@
     "next": "11.1.0",
     "react": "17.0.2",
     "react-dom": "17.0.2",
-    "swiper": "^7.0.1"
+    "swiper": "^7.0.1",
+    "yall-js": "^3.2.0"
   },
   "devDependencies": {
     "autoprefixer": "^10.3.3",
