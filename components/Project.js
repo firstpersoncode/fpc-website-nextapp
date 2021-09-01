@@ -32,9 +32,9 @@ export default function ComponentProject({ data, projects, isActive }) {
       <div className="absolute w-full h-full inset-0 flex flex-col justify-center items-center">
         <h1 className="text-3xl text-white font-medium mb-4">My works</h1>
         {projects && projects.length ? (
-          <ul className="text-blue-300 list-disc">
+          <ul className="text-blue-300 text-center px-8">
             {projects.map((project, i) => (
-              <li onClick={handleToggleProject(i)} key={i} className="hover:text-white cursor-pointer">{project.name}</li>
+              <li onClick={handleToggleProject(i)} key={i} className="hover:text-white cursor-pointer inline-block p-2">{project.name}</li>
             ))}
           </ul>
         ) : null}
@@ -52,9 +52,9 @@ export default function ComponentProject({ data, projects, isActive }) {
               <ul className="flex items-center mb-4">
                 <li className="text-sm font-medium mr-4">Stacks:</li>
               {selectedProject.technologies.map((tech, i) => (
-                <li key={i} className="flex items-center mr-4">
-                  {tech.image && tech.image.url ? <img src={STRAPI_HOST + tech.image.url} width={25} className="mr-2" /> : null}
-                  {tech.name ? <span className="text-xs">{tech.name}</span> : null}
+                <li key={i}>
+                  <a href={tech.url} target="_blank" rel="noreferrer" className="flex items-center mr-4 text-blue-700">{tech.image && tech.image.url ? <img src={STRAPI_HOST + tech.image.url} width={25} className="mr-2" /> : null}
+                  {tech.name ? <span className="text-xs">{tech.name}</span> : null}</a>
                 </li>
               ))}
               </ul>
