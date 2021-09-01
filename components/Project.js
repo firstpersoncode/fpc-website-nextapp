@@ -49,7 +49,7 @@ export default function ComponentProject({ data, projects, isActive }) {
               {selectedProject.company.url && selectedProject.name ? <a href={selectedProject.company.url} target="_blank" rel="noreferrer" className="font-medium text-blue-700">{selectedProject.company.name}</a> : null}
             </div> : null}
             {selectedProject.technologies && selectedProject.technologies.length ? (
-              <ul className="flex items-center mb-4">
+              <ul className="flex flex-wrap items-center mb-4">
                 <li className="text-sm font-medium mr-4">Stacks:</li>
               {selectedProject.technologies.map((tech, i) => (
                 <li key={i}>

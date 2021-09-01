@@ -7,7 +7,7 @@ export default function ComponentDrawer({ open, onClose, children }) {
         opacity: open ? 1 : 0,
         maxHeight: "40vh"
       }}>
-        <div className="relative p-10 bg-white rounded">
+        <div className="relative p-10 pb-20 bg-white rounded">
           <button onClick={onClose} className="absolute border border-gray-300 rounded border-b-4 right-0 left-0 m-auto top-4" style={{ width: 100 }}></button>
           {children}
         </div>
